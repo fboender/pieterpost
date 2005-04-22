@@ -1,0 +1,41 @@
+<style type="text/css">
+	*                   { font-size      : 12px;
+	                      font-family    : verdana;    }
+	
+	a		            { text-decoration: none;       }
+	a:link              { color          : #CD9900;	   }
+	a:visited           { color          : #CD9900;    }
+	a:hover             { color          : #DDA910;    }
+	a:active            { color          : #DDA910;    }
+	
+	td.menu_background  { background     : #292c29;    }
+	td.menu_foreground  { background     : #e6a100;    }
+	 b.menu_indicator   { color          : #f6ba00;    }
+	 a.menu_link        { color          : #ff8100;    }
+
+	 a.iface_header_fg  { color          : #FFFFFF;    }
+	 b.iface_header_fg  { color          : #FFFFFF;    }
+	td.iface_header_bg  { background     : #9c6d00;    }
+	tr.iface_header_bg  { background     : #9c6d00;    }
+	td.iface_main_bg_hi { background     : #949194;    }
+	tr.iface_main_bg_hi { background     : #949194;    }
+	td.iface_main_bg    { background     : #7b7a7c;    }
+	tr.iface_main_bg    { background     : #7b7a7c;    }
+	font.iface_main_fg  { color          : #000000;    }
+	 b.iface_main_fg    { color          : #3a2600     }
+	 a.iface_main_fg    { color          : #FFFFFF;    }
+
+	input               { border-style   : solid; 
+	                      border-width   : 1px; 
+	                      border-color   : #000000;    }
+	textarea            { border-style   : solid; 
+	                      border-width   : 1px; 
+	                      border-color   : #000000;    }
+	select              { border-style   : solid; 
+	                      border-width   : 1px; 
+	                      border-color   : #000000;    }
+	body.iface_main     { color          : #FFFFFF; 
+	                      background     : #000000;    
+	                      margin         : 0px 0px 0px 0px; }
+</style>
+

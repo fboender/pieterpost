@@ -1,0 +1,300 @@
+PieterPost: ChangeLog
+------------------------------------------------------------------------------
+
+[v%%VERSION] <%%EMAIL> ( %%DATE )
+
+[v0.10.9] <%%EMAIL> ( Mon May 24 19:44:59 CEST 2004 )
+  * Small fixes in various themes. Enhanced the readability. (Bug #0019)
+  * Groupname added to setup script. (Bug #0017)
+  * Fixed URLifying part of HTMLifying of plaintext. (Bug #0016)
+  * Added URLifying of email addresses (adds addressbook entry) 
+  * Html code in plain text messages is not parsed anymore. (Bug #0016)
+
+[v0.10.8] <%%EMAIL> ( Mon Jan 19 17:47:47 CET 2004 )
+  * Fixed a bug where you couldn't add a sender to the addressbook from the 
+    mailview screen.
+  * Users can now set their email address as a preference.
+  * Added information about open_basedir php directive to README and error 
+    message. (thanx to Paul Henke)
+  * Fixed some minor things in the interface.
+
+[v0.10.7] <%%EMAIL> ( Sat Nov 29 18:25:53 CET 2003 )
+  * Fixed a bug where pages could be requested before you were logged in. Not
+    really serious since auth is done on the pop3 server, but it allowed
+	for anonymous remailing using pieterpost. Thanks to datasink at op dot pl
+	and Flunk.
+
+[v0.10.6] <%%EMAIL> ( fri nov 07 10:10:10 cest 2003 )
+  * Fixed an error in the german translation.
+  * Added error message to mailview when message couldn't be retrieved.
+  * Fixed the empty line at the beginning of e-mails problem.
+  * To and Cc fields are now shown in mail view.
+  * Improved mime parsing. multipart mime-types are now supported.
+  * Added a link to the bug report page at the bottom of each page.
+  * First form field on each page is now automatically focussed.
+  * Replying will now transform HTML messages to text.
+  * Better Dutch translation by Jan Willem Vermeer.
+
+[v0.10.5] <%%EMAIL> ( Sat Jul 12 19:13:04 CEST 2003 )
+  * Applied patch from Eric Noack. Fixes localization errors with various 
+    buttons.
+  * Added german language localisation.
+  
+[v0.10.4] <%%EMAIL> ( Mon Jan 27 15:36:25 CET 2003 )
+
+  * Fixed the bug where the inbox would be shown (NO contents though!
+    no security risk!) when you pressed the 'Try again' link after a wrong
+	login. I'm not sure if this was bug 36, I'll have to look into it.
+
+[v0.10.3] <%%EMAIL> ( Mon Jan 13 15:31:38 CET 2003 )
+
+  * Replaced the usage of _SESSION with HTTP_SESSION_VARS in order to be 
+    backwards compatible with PHP versions < 4.0.7. (Fixed bug 29)
+
+[v0.10.2] <%%EMAIL> ( Sat Jan  4 14:17:50 CET 2003 )
+
+  * Deleting mail is now done using message_id's, not numbers. Fixes bug 26.
+  * Nice html dialogs for error/notification messages. Fixed bug 22.
+
+[v0.10.1] <%%EMAIL> ( Thu Dec 26 20:08:40 CET 2002 )
+
+  * Adapted pieterpost to work with Safe_mode on and Register_globals off.
+  * Fixed bug 31: Signatures consisting of multiple lines are not stored 
+    correctly. Newlines where not encoded during save.
+  * Changed the default preferences directory from /usr/local/pieterpost to
+    /var/pieterpost
+  * Fixed bug 33 : When there is no user.msg, an error is displayed, which
+    is not correct if the user is logging in for the first time. Fixed by
+    adding a '@' in front if the 'file' call.
+  * Pieterpost is now aborted if it can't find the language file.
+  * Fixed bug 30 : Pieterpost failed at numorous points when email addresses
+    are like: "this is my emailaddress"@blaa.com. Fixed by adding
+	htmlentities and stripslashes.
+  * Fixed bug 32 : Double display of 'email could not be sent' error message
+    Also fixed typo ('Send' should be 'sent', shouldn't it?) in 'Mail has 
+    been sent' message.
+  * Fixed bug 27: Adapted setup.sh to use ':' to seperate user and groupnames
+    when using chmod.
+
+[v0.10] <%%EMAIL> ( Sat Nov 16 15:52:25 CET 2002 )
+
+  * Fixed the bug in which the Nr of mails display box was huge in IE.
+  * Fixed font-size bugs. The fonts should now be equel in all browsers.
+  * Users with older browser can now use PP through the NoTheme theme, which
+    does not use css2.
+  * Exremely large code cleanup (this may have broken some stuff)
+  * Users can now set their own theme (preference)
+  * Users can now set their own language. (preference)
+  * Fixed bug where it whould not display a message when there wasn't any
+    mail in the current view (i.e. With the 'old mail' filter but no old mail, 
+    only new mail)
+  * Major changes in the language files (due to code cleanup)
+  * Support for multiple addresses in the to,cc,bcc fields by using the 
+    addressbook. (This was already present, but it seems I forget to mention 
+    it in the changelog. My bad)
+  * Fixed wrong theme-ing of full header display
+  * URL's in the mailview are now made clickable
+  * Setup script now asks for the server hostname or ip and port to which PP
+    should connect.
+  * Small readability fix in the setup.sh script. (sed replace section)
+
+[v0.9.1] <%%EMAIL> ( Thu Oct 17 21:04:01 CEST 2002 )
+  * Fixed bug #25, (delete from viewmail screen).
+
+[v0.9] <%%EMAIL> ( Sun Oct  6 16:30:15 CEST 2002 )
+  * Replaced all occurences of pp.php to $PHP_SELF.
+  * Updated some stuff in the README.
+  * Reverted the replacement of all occ. of pp.php to $PHP_SELF (caused bugs)
+  * Mailbox now has ability to show all, new or already read mail.
+  * Preference added for default mailbox viewing (all, new, old).
+  * Fixed IE SSL download bug (bug #23) See the Installation section in the 
+    README for more info.
+  * Seen message-headers are now removed from .msg files if they are no
+    longer in the mailbox (i.e. popped from other location)
+  * Some help messages (and buttons) for certain unclear things.
+  * Dutch language added.
+
+[v0.8.11] <%%EMAIL> ( Wed Jun 26 21:35:08 CEST 2002 )
+  * Changed setup.sh chmod parameters so it works on *bsd.
+  * Fixed bug in attachmentview URL. Version 0.8.9 was also affected.
+  * Added new theme 'Chilled'. Thanx Aczid.
+
+[v0.8.10] <%%EMAIL> ( Tuesday, 04 Jun 2002, 08:07pm )
+  * Added a notice about php configuration to README for FreeBSD users,
+    thanx to I.R. van Dongen.
+
+[v0.8.9] <%%EMAIL> ( Fri May 31 21:16:23 CEST 2002 )
+  * Fixed attachment display colors.
+  * Code cleanup.
+
+[v0.8.8] <%%EMAIL> ( Sat Apr 20 11:06:13 CEST 2002 )
+  * Applied 'bounce' patch from Ivo van Dongen. Adds a header to sent email
+    to let servers know where bounced msges should go to. (postfix only?)
+  * Started a small code-cleanup
+  * Added addressbook support for CC en BCC compose fields
+
+[v0.8.7] <%%EMAIL> ( Sat Mar 16 14:39:50 CET 2002 )
+  * Fixed bug 18: BSD's ls only support ls [options] [file], not 
+    ls [file] [options].
+
+[v0.8.6] <%%EMAIL> ( Sat Mar 16 12:24:06 CET 2002 )
+  * preliminary support for languages added, just in the form of variables
+    (quick hack)
+  * Changed font size for better view in IE
+  * Extended themes so they are easier to setup and use.
+  * Added support for theme-chosing in setup
+  * Made 3 themes (gold, bluegreen and blacknwhite) (default: bluegreen)
+  * Bug #17 closed (returned mail went to www-data@hostname. See README -
+    installation for a fix)
+
+[v0.8.5] <%%EMAIL> (Wed Feb 13 13:20:46 CET 2002)
+
+  * Added more information about imap module to README, and a reference
+    to the README in the error report from Pieterpost when imap can't be
+    found/loaded.
+
+[v0.8.4] <%%EMAIL> (Mon Jan 28 18:44:36 CET 2002)
+
+  * Fixed various bugs in the setup script:
+    1. prefdir wasn't appended with a '/' when patching pp.php.
+    2. Default hostname wasn't used properly.
+    Thanx to Hoest (Jelle de Jong <jelle at hoest.nl>
+
+[23 Jan 2002] <%%EMAIL>
+
+  * Setup script now asks for default hostname for sent mail.
+  * Removed a small typo in the html code for the select box (address book)
+  * Setup script updated with new sed expressions for line replacement.
+  * Release 0.8.3
+
+[23 Dec 2001] <%%EMAIL>
+
+  * Made homepage and version global vars.
+  * (very) small code cleanup.
+  * Fixed displaying of errors during login.
+  * Made hostname global var.
+  * Added various NOTICEs in the code.
+
+[19 Dec 2001] <%%EMAIL>
+
+  * Changed all email addresses and homepage to new locations.
+
+[14 Nov 2001] <%%EMAIL>
+
+  * Removed READONLY opening of mailboxes. (fixes bug 11)
+  * Added extra error checking for imap module (fixes bug 12)
+  * Released version 0.8.1
+  * Forgot to edit setup.sh to make it patch the correct line
+    in the pp.php file. Fixed that. Need more coffee.
+  * Corrected some stuff in the README
+  * Released version 0.8.2
+
+[03 Nov 2001] <%%EMAIL>
+
+  * Made login name case insensitive
+
+[13 Dec 2000] <%%EMAIL>
+
+  * Added 'seen mail' feature.
+    
+[04 Dec 2000] <%%EMAIL>
+
+  * Released v0.7.1
+  * Changed links to PieterPost homepage to http://www.arise.dhs.org
+    
+[27 Oct 2000] <%%EMAIL>
+
+  * Released v0.7
+    
+[26 Oct 2000] <%%EMAIL>
+
+  * Added right setting to setup script.
+  * Added better error checking.
+  * Addressbook dropdown list only shown if there are any adresses in it.
+    
+[25 Oct 2000] <%%EMAIL>
+
+  * Created setup script
+  * Some code cleanup
+
+[24 Oct 2000] <%%EMAIL>
+
+  * Added addressbook editing/using
+  * Added direct adding of sender to addressbook from viewing of mail.
+    
+[23 Oct 2000] <%%EMAIL>
+
+  * Added attachment sending support. Currently only 1 attachment.
+  * Removed some redundant debugging code which was left behind.
+  * Added user preferences editing screen
+  * Implemented user preferences throughout pieterpost
+    
+[18 Oct 2000] <%%EMAIL>
+
+  * Released v0.6
+  * Added correct non-caching headers, and tested it. It seems to work.
+    This fixes bug 9 (i hope)
+      
+[17 Ovt 2000] <%%EMAIL>
+
+  * Added CC support.
+  * Added BCC support.
+    
+[13 Oct 2000] <%%EMAIL>
+
+  * Added delete support to mailbox view.
+  * Added delete support to message view.
+  * Added support for full header viewing.
+    
+[10 Oct 2000] <%%EMAIL>
+
+  * Released v0.5
+  * Removed check for disposition == 'attachment', because some mail clients
+      (netscape) doesn't provide them.
+  * Added displaying of nr of mail in inbox.
+    
+[09 Oct 2000] <%%EMAIL>
+
+  * Added cookie check and error message for no cookies.
+  * Fixed wrong font sizes in login and logout sections
+  * Added attachment viewing / downloading support.
+    
+[08 Oct 2000] <%%EMAIL>
+
+  * Documented sourcecode.
+    
+[07 Oct 2000] <%%EMAIL>
+
+  * Released v0.4
+  * Small updates on documentation.
+  * Added download link at logout section.
+  * Mailboxes are now opened read-only, to avoid PieterPost from making any
+    changes to it.
+  * Fixed 'no subject' bug. Bug 7
+  * Added 'No mail' feature.
+  * Added converting of HTML entities in subject and bodies of mail
+  * Added viewing of current action in top-right corner
+  * Added links in copyright notice at bottom of page
+  * Fixed some more font size problems.
+  * Fixed mailbox sort problem. Sort is now remembered throughout session
+    Bug 5
+
+[06 Oct 2000] <%%EMAIL>
+
+  * Slightly improved navigation.
+  * Changed 'to' and 'subject' field length in 'compose' section.
+  * Fixed slash-encoding problem in 'compose' section. Bug 4
+  * Added mailbox sorting routine.
+  * Fixed cross-browser font sizes. Still not optimal, cross-browser sucks.
+  * Fixed various small design flaws.
+    
+[05 Oct 2000] <%%EMAIL>
+
+  * Released v0.3 - Sure goes fast with these releases! ;-)
+  * Corrected From: header field. Bug 3
+  * Fixed non-existing vars in 'compose' section - thx to hoest, bug 1
+  * Fixed link to homepage in 'logout' section. Bug 2
+  * Released v0.2 - first release.
+  * Created pretty interface.
+  * Created raw interface.
+  * Initial project start.

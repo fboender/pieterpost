@@ -1,0 +1,18 @@
+
+This file lists changes which might break upgrading or should be taken 
+notice of when installing pieterpost. 
+
+v0.10.1
+	In this release the default preferences dir has changed, so you should 
+	either change it during setup to the old dir (/usr/local/pieterpost/) or
+	copy the old files from /usr/local/pieterpost (or whatever you specified
+	during setup last time) to the new /var/pieterpost. This is only needed
+	if you are updating a previous version of pieterpost.
+
+	PP now uses ':' to seperate usernames and groups in chmod operations. In
+	old versions of chmod, this used to be '.', so if you get errors, you
+	should do it by hand, or change the ':'s to '.'s in the setup file.
+
+v0.10
+	This release features mayor code cleanups, and might cause some loss
+	of preferences.

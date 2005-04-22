@@ -1,0 +1,62 @@
+<style type="text/css">
+	*                     { font-size      : 12px; 
+	                        font-family    : Arial, 
+	                                         Verdana,
+	                                         sans-serif; }
+
+	a                     { text-decoration: none;       }
+	a:link                { color          : #000000;    }
+	a:visited             { color          : #000000;    }
+	a:hover               { color          : #000000; 
+	text-decoration:underline; }
+	a:active              { color          : #FFFFFF;    }
+	
+	a:hover.menu_link     { color          : #FFFFFF;
+	                        text-decoration:underline;   }
+	a:visited.menu_link   { color          : #FFFFFF;    }
+	a:active              { color          : #FFFFFF;    }
+	td.menu_background    { background     : #31578F;    }
+	td.menu_foreground    { background     : #4674BA;    }
+	b.menu_indicator      { color          : #FFFFFF;    }
+	a.menu_link           { color          : #FFFFFF;    }
+
+	a.iface_header_fg     { color          : #FFFFFF;    }
+	b.iface_header_fg     { color          : #FFFFFF;    }
+	td.iface_header_bg    { background     : #6990CB;    }
+	tr.iface_header_bg    { background     : #6990CB;    }
+
+	td.iface_main_bg_hi   { background     : #F0F3F6;
+	                        border-style   : solid;
+	                        border-width:1px;
+	                        border-color:#D2DAE4;        }
+	tr.iface_main_bg_hi   { background     : #F0F3F6;
+	                        border-style   : solid;
+	                        border-width:1px;
+	                        border-color:#D2DAE4;        }
+	td.iface_main_bg      { background     : #F0F3F6;
+	                        border-style   : solid;
+	                        border-width:1px;
+	                        border-color:#D2DAE4;        }
+	tr.iface_main_bg      { background     : #F0F3F6;
+	                        border-style   : solid;
+	                        border-width:1px;
+	                        border-color:#D2DAE4;        }
+	
+	font.iface_main_fg    { color          : #000000;    }
+	b.iface_main_fg       { color          : #000000;    }
+	a.iface_main_fg       { color          : #000000;    }
+	a:hover.iface_main_fg { color          : #000000;    }
+
+	input                 { border-style   : solid;
+	                        border-width   : 1px;
+		                border-color   : #D2DAE4;    }
+	textarea              { border-style   : solid;
+		                border-width   : 1px;
+		                border-color   : #D2DAE4;    }
+	select                { border-style   : solid;
+		                border-width   : 1px;
+		                border-color   : #D2DAE4;    }
+	body.iface_main       { color          : #000000;
+		                background     : #FFFFFF;
+		                margin         : 0px 0px 0px 0px; }
+</style>
