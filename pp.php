@@ -34,12 +34,12 @@ $prefs["pp_homepage"] = "%%HOMEPAGE";
 
 // Set by setup.sh script. If not, remove the REF### part, and fill in the
 // values yourself
-$REF001prefs["prefdir"]="/var/pieterpost/";
-$REF002prefs["hostname"]="localhost";
-$REF003prefs["theme"]="bluegreen";
-$REF004prefs["language"]="english";
-$REF005prefs["pop_server"]="localhost";
-$REF006prefs["pop_port"]="110";
+$prefs["prefdir"]="/var/pieterpost/";
+$prefs["hostname"]="dev.local";
+$prefs["theme"]="bluegreen";
+$prefs["language"]="english";
+$prefs["pop_server"]="localhost";
+$prefs["pop_port"]="110";
 
 // Default preferences
 $prefs["sortbox"] = "date";
@@ -54,22 +54,17 @@ load_imap();
 load_encodings($mime_enc, $trans_enc); /* fill mime and trans tbls */
 
 /* Some vars are given through the GET and POST method */
-if (isset($HTTP_GET_VARS["action"]) && !isset($HTTP_POST_VARS["action"])) {
-	$HTTP_POST_VARS["action"] = $HTTP_GET_VARS["action"];
-}
-if (isset($HTTP_GET_VARS["del"]) && !isset($HTTP_POST_VARS["del"])) {
-	$HTTP_POST_VARS["del"] = $HTTP_GET_VARS["del"];
-}
-if (isset($HTTP_GET_VARS["frm_address"]) && !isset($HTTP_POST_VARS["frm_address"])) {
-	$HTTP_POST_VARS["frm_address"] = $HTTP_GET_VARS["frm_address"];
+$action = "";
+if (isset($_REQUEST["action"])) {
+	$action = $_REQUEST["action"];
 }
 
 // If logged in, overwrite the default prefs with the users prefs
 if (session_is_registered("username") && 
     session_is_registered("password")) {
-	$username = $HTTP_SESSION_VARS["username"];
-	$password = $HTTP_SESSION_VARS["password"];
-	$prefs = array_merge ($prefs, load_prefs ($prefs["prefdir"]."/".$HTTP_SESSION_VARS["username"].".prefs"));
+	$username = $_SESSION["username"];
+	$password = $_SESSION["password"];
+	$prefs = array_merge ($prefs, load_prefs ($prefs["prefdir"]."/".$_SESSION["username"].".prefs"));
 
 	/* Reload languages and theme */
 	$lang  = load_lang($prefs["prefdir"]."languages/".$prefs["language"].".lang");
@@ -80,25 +75,26 @@ if (session_is_registered("username") &&
 	$password = "";
 
 	/* Yoy may only request loginget, logincheck if not logged in. */
-	if (!($action == "loginget" || $action == "logincheck" || $action == "")) {
+	if (isset($action) && 
+           !($action == "loginget" || $action == "logincheck" || $action == "")) {
 		die ("Cannot access requested page. Perhaps your session has expired?");
 	}
 }
 
 // Some actions require exceptions.
 // User just came from login page? 
-if (!$HTTP_POST_VARS["action"] == "logincheck") {
+if ($action !== "logincheck") {
 	if (!session_is_registered("username") ||
 	    !session_is_registered("password")) {
-		$HTTP_POST_VARS["action"] = "loginget";
+		$action = "loginget";
 	}
 }
 
 // Determine current action for pp
-switch ($HTTP_POST_VARS["action"]) {
+switch ($action) {
 	case "logincheck" : 
-		act_login_check ($HTTP_POST_VARS["frm_login"]); 
-		act_mbox_view ($HTTP_GET_VARS["sort"], $HTTP_GET_VARS["filter"]); 
+		act_login_check ($_POST["frm_login"]); 
+		act_mbox_view ($_GET["sort"], $_GET["filter"]); 
 		break;
 	case "loginget" : 
 		act_login_get();
@@ -108,32 +104,32 @@ switch ($HTTP_POST_VARS["action"]) {
 		act_login_get();
 		break;
 	case "maildelete" : 
-		act_mail_delete($HTTP_POST_VARS["del"]);
-		act_mbox_view ($HTTP_GET_VARS["sort"], $HTTP_GET_VARS["filter"]);
+		act_mail_delete($_REQUEST["del"]);
+		act_mbox_view ($_GET["sort"], $_GET["filter"]);
 		break;
 	case "mailview" : 
-		act_mail_view($HTTP_GET_VARS["msgid"], $HTTP_GET_VARS["headers"]);
+		act_mail_view($_GET["msgid"], $_GET["headers"]);
 		break;
 	case "attachmentview" : 
-		act_attachment_view($HTTP_GET_VARS["msgid"], $HTTP_GET_VARS["attachmentid"]); 
+		act_attachment_view($_GET["msgid"], $_GET["attachmentid"]); 
 		break;
 	case "mailcompose" : 
-		act_mail_compose($HTTP_GET_VARS["to"], $HTTP_GET_VARS["msgid"]);
+		act_mail_compose($_GET["to"], $_GET["msgid"]);
 		break;
 	case "mailsend" : 
-		act_mail_send($HTTP_POST_VARS["frm_compose"]);
+		act_mail_send($_POST["frm_compose"]);
 		break;
 	case "preferences" :
-		act_preferences($HTTP_POST_VARS["subaction"], $HTTP_POST_VARS["frm_pref"]);
+		act_preferences($_POST["subaction"], $_POST["frm_pref"]);
 		break;
 	case "addressbook" : 
-		act_addressbook($HTTP_POST_VARS["subaction"], $HTTP_POST_VARS["frm_address"]);
+		act_addressbook($_POST["subaction"], $_REQUEST["frm_address"]);
 		break;
 	case "mboxview" : 
-		act_mbox_view($HTTP_GET_VARS["sort"], $HTTP_GET_VARS["filter"]);
+		act_mbox_view($_GET["sort"], $_GET["filter"]);
 		break;
 	default : 
-		act_mbox_view($HTTP_GET_VARS["sort"], $HTTP_GET_VARS["filter"]);
+		act_mbox_view($_GET["sort"], $_GET["filter"]);
 		break;
 }
 
@@ -236,6 +232,8 @@ function load_encodings(&$mime_enc, &$trans_enc) {
 //----------------------------------------------------------------------------
 function load_prefs($path_prefs) {
 
+	$prefs = array();
+
 	if ($file_prefs = @file($path_prefs)) {
 		for ($i=0; $i!=count($file_prefs); $i++) {
 			$key = substr(
@@ -252,7 +250,7 @@ function load_prefs($path_prefs) {
 			$key = chop($key);
 			$value = chop($value);
 
-			$prefs["$key"] = $value;
+			$prefs[$key] = $value;
 		}
 		
 		$prefs["signature"] = str_replace("\\n","\n",$prefs["signature"]);
@@ -640,7 +638,7 @@ function act_login_get () {
 // Remarks: -
 //----------------------------------------------------------------------------
 function act_login_check ($frm_login) {
-	global $username, $password, $lang, $prefs, $theme, $HTTP_SESSION_VARS;
+	global $username, $password, $lang, $prefs, $theme, $_SESSION;
 	
 	// Open connection to pop3 to validate un + pw
 	if (@$mbox = imap_open("{".$prefs["pop_server"]."/pop3:".$prefs["pop_port"]."}INBOX",$frm_login["username"],$frm_login["password"])) {
@@ -650,13 +648,13 @@ function act_login_check ($frm_login) {
 		session_register ("username");
 		session_register ("password");
 
-		$HTTP_SESSION_VARS["username"] = strtolower($frm_login["username"]);
-		$HTTP_SESSION_VARS["password"] = $frm_login["password"];
+		$_SESSION["username"] = strtolower($frm_login["username"]);
+		$_SESSION["password"] = $frm_login["password"];
 		
 		/* Set these so the next called function after login (act_mailbox_view)
 		   knows about them */
-		$username = $HTTP_SESSION_VARS["username"];
-		$password = $HTTP_SESSION_VARS["password"];
+		$username = $_SESSION["username"];
+		$password = $_SESSION["password"];
 		
 		// Load the user's settings
 		$prefs = array_merge ($prefs, load_prefs ($prefs["prefdir"]."/".$frm_login["username"].".prefs"));
