@@ -41,6 +41,11 @@ Features
 * Replying to mail,
 * Composing mail.
 
+Some screenshots:
+
+![Inbox](https://bitbucket.org/fboender/pieterpost/downloads/pieterpost_inbox.png)
+![Compose](https://bitbucket.org/fboender/pieterpost/downloads/pieterpost_compose.png)
+
 
 Installation
 ------------
