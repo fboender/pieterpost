@@ -17,6 +17,9 @@ PieterPost is probably not conform to any RFC out there, but I really don't
 give a rat's ass. It works for me. But if you have any suggestions, feel free
 to mail them to me.
   
+**Please note that Pieterpost is a very old project. The last official release
+is from 2004. It still works, and is still usable, but don't expect anything
+modern.**
   
 Features
 --------
